@@ -1,73 +1,39 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html lang="es">
- <head> 
-   <title> HTML </title> 
-</head>   
-
-<style type="text/css">
- table, tr, td {
-  border: 1px solid black;    
-
-</style> 
-
+<head>
+    <title>Servicio social </title>
+</head>
 <body>
-<div style="display: flex; justify-content: center;align-items: center;"
-<table>
-<tr>
-<td colspan="2"   style="background-color: white"><h2>Elementos de HTML</h2></td>
-</tr>
-<tr><td><input id="captura" type="text" placeholder="Escribe tu nombre"></td><td><input type="button" value="Agregar" onclick="agregarFila()" ></td></tr>
-</table>
-</div>
-<center>
-  <table id="tabla"> 
-    <td   style="background-color: white ">Elementos</td>
-    <td   style="background-color: white ">Descripcion</td>
-    </tr>
+
+<h2> Escribe y Agrega Palabras</h2>
+
+<input type="text" id="wordInput" placeholder="Escribe...">
+
+<button onclick="addWord()">Agregar</button>
+
+<table border="1" id="wordTable">
+    <br></br>
     <tr>
-      <td   style="background-color: white">Prueba</td>
-      <td id="ejemplo"  style="background-color: white">Aqui ira otro texto.</td>
-<td style="background-color: white ">Agregar texto</td>
-     
+        <th>Agregado</th>
     </tr>
-    </table>
-</center>
-<script>
-  function mostrartuNombre() {
+</table>
 
-      
-      let inputNombre = document.getElementById("captura");
-      
-      let nombre = inputNombre.value;
-      
-      document.getElementById("ejemplo").innerHTML=nombre;  
-         
-      <
-  } 
+<script>
+    function addWord() {
+        var palabra = document.getElementById("wordInput").value;
+
+        if (palabra !== "") {
+            var tabla = document.getElementById("wordTable");
+
+            var nuevaFila = tabla.insertRow(1); 
+            var nuevaCelda = nuevaFila.insertCell(0);
+
+            nuevaCelda.innerHTML = palabra;
+
+            document.getElementById("wordInput").value = "";
+        }
+    }
 </script>
-<script>
-  function agregarFila() {
-    let nombre = document.getElementById("captura").value;
 
-  var tabla = document.getElementById("tabla");
-  
-  var nuevaFila = tabla.insertRow(-1);
-  
-  var celda1 = nuevaFila.insertCell(0);
-  var celda2 = nuevaFila.insertCell(1);
-  var celda3 = nuevaFila.insertCell(2);
-  
-  var numeroFilas = tabla.rows.length;
-
-  celda1.textContent = numeroFilas;
-  celda2.textContent = nombre;
-   
-   var botonEliminar = document.createElement("button");
-    botonEliminar.textContent = "Eliminar";
-    
-    botonEliminar.onclick = function() {
-        this.parentNode.parentNode.remove();
-    };
-
-    celda3.appendChild(botonEliminar);
-  }
+</body>
+</html>
